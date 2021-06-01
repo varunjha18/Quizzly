@@ -1,0 +1,15 @@
+{% extends 'base.html' %} {% block content %}
+
+<div class="container text-center my-4">
+
+
+    <h1 style="color:white">{{quiz_start.quiz_title}}</h1>
+    <img src="{{quiz_start.cover_img.url}}" alt="" style="height: 300px;"><br>
+
+    <a href="{% url 'question' quiz_start.id %}" class="my-2"><button>Start Quiz</button></a>
+</div>
+
+
+
+
+{% endblock content %}

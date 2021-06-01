@@ -1,0 +1,38 @@
+{% extends 'base.html' %} {% block content %}
+
+
+
+<form action="{% url 'question' quiz_id %}" method="post" id="quiz">
+{% csrf_token %}
+    {% for question in questions %}
+    <div class="container my-4">
+        <h1 class="red">{{question.question_no}} {{question.problem}}</h1>
+
+        <div>
+            <input type="radio" name="question-{{question.question_no}}-answers" id="question-1-answers-A" value="A" />
+            <label for="question-1-answers-A"> {{question.option_1}}</label>
+        </div>
+
+        <div>
+            <input type="radio" name="question-{{question.question_no}}-answers" id="question-1-answers-B" value="B" />
+            <label for="question-1-answers-B">{{question.option_2}}</label>
+        </div>
+
+        <div>
+            <input type="radio" name="question-{{question.question_no}}-answers" id="question-1-answers-C" value="C" />
+            <label for="question-1-answers-C">{{question.option_3}}</label>
+        </div>
+
+        <div>
+            <input type="radio" name="question-{{question.question_no}}-answers" id="question-1-answers-D" value="D" />
+            <label for="question-1-answers-D">{{question.option_4}}</label>
+        </div>
+    </div>
+
+    {% endfor %}
+    <input type="submit" value="Submit Quiz">
+</form>
+
+
+
+{% endblock content %}
