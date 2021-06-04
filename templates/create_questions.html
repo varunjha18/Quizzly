@@ -1,21 +1,42 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} {% block content %}
 
-{% block content %}
-
-<h1>these many questions will be input {{no_of_ques}}</h1>
+<h1>You will be adding {{no_of_ques}} questions</h1>
 
 
 
-{% for ques in no_of_ques %}
 
-<h4>this is a question</h4>
+
+
+
+<div class="container mx-5 my-4">
+
+    <form action="#" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+        {% for ques in no_of_ques %}
+
+        <h2>question no {{ques}}</h2>
+        <input type="text" name="problem">
+
+        <h3>option 1</h3>
+        <input type="text" name="question-{{ques}}-option-1">
+        <h3>option 2</h3>
+        <input type="text" name="question-{{ques}}-option-2">
+        <h3>option 3</h3>
+        <input type="text" name="question-{{ques}}-option-3">
+        <h3>option 4</h3>
+        <input type="text" name="question-{{ques}}-option-4">
+        <h3>option 5</h3>
+        <input type="text" name="question-{{ques}}-option-5" value="Can ignore this">
+<br>
+<br>
+<br>
 {% endfor %}
 
 
+        <button type="submit">Create quiz</button>
+    </form>
 
 
+
+</div>
 {% endblock content %}
-
-
-
-

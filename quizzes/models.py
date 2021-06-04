@@ -23,9 +23,9 @@ class Question(models.Model):
     option_6=models.CharField(max_length=200,blank=True)
     option_7=models.CharField(max_length=200,blank=True)
     correct_answer=MultiSelectField(choices=option_choices)
-    prob_img_1=models.ImageField(upload_to="photos/%y/%m/%d/",blank=True)
-    prob_img_2=models.ImageField(upload_to="photos/%y/%m/%d/",blank=True)
-    prob_img_3=models.ImageField(upload_to="photos/%y/%m/%d/",blank=True)
+    prob_img_1=models.ImageField(upload_to="photos/%y/%m/",blank=True)
+    prob_img_2=models.ImageField(upload_to="photos/%y/%m/",blank=True)
+    prob_img_3=models.ImageField(upload_to="photos/%y/%m/",blank=True)
     points=models.IntegerField(default=10)
     date_created=models.DateTimeField(blank=True,default=datetime.now())
 
@@ -37,7 +37,7 @@ class Question(models.Model):
 class Quiz(models.Model):
     quiz_id=models.IntegerField()
     quiz_title=models.CharField(max_length=200)
-    cover_img=models.ImageField(upload_to="photos/%y/%m/%d/",blank=True)
+    cover_img=models.ImageField(upload_to="photos/%y/%m/",blank=True,default='aaaaaaa.jpeg')
     is_public=models.BooleanField(default=True)
 
     def __str__(self):

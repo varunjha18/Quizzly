@@ -2,6 +2,7 @@ from django.shortcuts import redirect, render
 from quizzes.models import Quiz
 from quizzes.models import Question
 from django.shortcuts import get_object_or_404, render
+from .forms import quizform
 
 
 # Create your views here.
@@ -58,13 +59,25 @@ def question(request,quiz_id):
 
 
 def create_quiz(request):
+    new_quiz_id=max(Quiz.objects.values_list('id',flat=True))+1
     if request.method=="POST":
-        quiz_title=request.POST.get('quiz_title')
-        cover_img=request.POST.get('cover_img')
-        no_of_ques=request.POST.get('no_of_ques')
+        # form=quizform(data=request.POST,files=request.FILES)
+        # print(form)
+        # if form.is_valid():
+        #     form.save()
+        #     obj=form.instance
+        #     print(obj)
+        #     print('wwwwwwwwwwoooooooooooorrrrrrrrrrrrrrkkkkkkkkkkkkkkkkk')
+        #     return render(request,"create_questions.html",{"obj":obj})
+        # print('rbbbbbbbbbbbb')
         
-        quiz_id=max(Quiz.objects.values_list('id',flat=True))+1
-        quiz=Quiz(quiz_id=quiz_id,quiz_title=quiz_title,cover_img=cover_img)
+        
+        quiz_title=request.POST.get('quiz_title')
+        cover_img=request.FILES.get('cover_img')
+        no_of_ques=request.POST.get('no_of_ques')
+        print(cover_img)
+        # print(Quiz.objects.values_list('id',flat=True))
+        quiz=Quiz(quiz_id=new_quiz_id,quiz_title=quiz_title,cover_img=cover_img)
 
         quiz.save()
         data={'no_of_ques' : range(int(no_of_ques)) }
