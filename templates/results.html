@@ -1,0 +1,19 @@
+{% extends 'base.html' %} {% block content %}
+
+<h1 class="mx-5 my-2" style="background: green;font-size: 50px;;width: 25%;">
+    You Score is {{score}}</h1>
+
+{% for res in result %}
+
+<div class="box mx-5 my-2" style="border: 2px solid;background: cornsilk;">
+    <h4>result- {{res.0}}</h4>
+    <h4>question- {{res.1}}</h4>
+    <h4>given answer- {{res.2}}</h4>
+    <h4>correct answer- {{res.3}}</h4>
+</div>
+
+<br> {% endfor %}
+
+<h2 class="my-3 mx-5">Take up more such exiting quizzes</h2>
+<a class="my-1 mx-5" href="{% url 'home' %}"> <button>Home</button> </a>
+{% endblock content %}

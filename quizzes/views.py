@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from quizzes.models import Quiz
 from quizzes.models import Question
 from django.shortcuts import get_object_or_404, render
@@ -26,22 +26,53 @@ def question(request,quiz_id):
         
     result=[]
     if request.method=="POST":
+        score=0
         for i in range(len(questions)):
             # print(request.POST.get('question-'+str(i+1)+'-answers'))
             ans_given=(request.POST.get('question-'+str(i+1)+'-answers'))
             right_ans=questions[i].correct_answer
             
             if ans_given==None:
-                result.append(-1)
+                result.append([-1,questions[i].problem,ans_given,right_ans])
             elif str(ans_given)==str(right_ans):
-                result.append(1)
+                result.append([1,questions[i].problem,ans_given,right_ans])
+                score+=questions[i].points
             else:
-                result.append(0)
-
-        print(result)
+                result.append([0,questions[i].problem,ans_given,right_ans])
         
+        # print(result)
+        res_data={
+            'result':result,
+            "score":score,
+        }
+        return render(request,"results.html",res_data)
+        
+
+
     data={
         'questions':questions,
         'quiz_id':quiz_id,
     }
     return render(request,"questions.html",data)
+
+
+
+def create_quiz(request):
+    if request.method=="POST":
+        quiz_title=request.POST.get('quiz_title')
+        cover_img=request.POST.get('cover_img')
+        no_of_ques=request.POST.get('no_of_ques')
+        
+        quiz_id=max(Quiz.objects.values_list('id',flat=True))+1
+        quiz=Quiz(quiz_id=quiz_id,quiz_title=quiz_title,cover_img=cover_img)
+
+        quiz.save()
+        data={'no_of_ques' : range(int(no_of_ques)) }
+        return render(request,'create_questions.html',data)
+
+    return render(request,'create_quiz_start.html')
+
+
+
+# def create_questions(request):
+#     return render(request,'create_questions.html')
