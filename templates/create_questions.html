@@ -10,27 +10,31 @@
 
 <div class="container mx-5 my-4">
 
-    <form action="#" method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-        {% for ques in no_of_ques %}
+    <form action="{% url 'create_questions' quiz_id  number %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %} {% for ques in no_of_ques %}
 
         <h2>question no {{ques}}</h2>
-        <input type="text" name="problem">
+        <input type="text" name="problem-{{ques}}">
 
-        <h3>option 1</h3>
+        <h3>option A</h3>
         <input type="text" name="question-{{ques}}-option-1">
-        <h3>option 2</h3>
+        <h3>option B</h3>
         <input type="text" name="question-{{ques}}-option-2">
-        <h3>option 3</h3>
+        <h3>option C</h3>
         <input type="text" name="question-{{ques}}-option-3">
-        <h3>option 4</h3>
+        <h3>option D</h3>
         <input type="text" name="question-{{ques}}-option-4">
-        <h3>option 5</h3>
+        <h3>option E</h3>
         <input type="text" name="question-{{ques}}-option-5" value="Can ignore this">
-<br>
-<br>
-<br>
-{% endfor %}
+        <h3>correct answer (write A,B,C,D)</h3>
+        A<input type="radio" name="question-{{ques}}-correct" id="question-1-answers-A" value="A" style="margin-right: 50px;" /> B
+        <input type="radio" name="question-{{ques}}-correct" id="question-1-answers-A" value="B" style="margin-right: 50px;" /> C
+        <input type="radio" name="question-{{ques}}-correct" id="question-1-answers-A" value="C" style="margin-right: 50px;" /> D
+        <input type="radio" name="question-{{ques}}-correct" id="question-1-answers-A" value="D" style="margin-right: 50px;" /> E
+        <input type="radio" name="question-{{ques}}-correct" id="question-1-answers-A" value="E" style="margin-right: 50px;" />
+
+        <br>
+        <br> {% endfor %}
 
 
         <button type="submit">Create quiz</button>

@@ -80,12 +80,37 @@ def create_quiz(request):
         quiz=Quiz(quiz_id=new_quiz_id,quiz_title=quiz_title,cover_img=cover_img)
 
         quiz.save()
-        data={'no_of_ques' : range(int(no_of_ques)) }
-        return render(request,'create_questions.html',data)
+        # data={'no_of_ques' : range(int(no_of_ques)) }
+        return redirect('create_questions',new_quiz_id,int(no_of_ques))
 
-    return render(request,'create_quiz_start.html')
+    return render(request,'create_quiz_start.html',{'new_quiz_id':new_quiz_id})
 
 
 
-# def create_questions(request):
-#     return render(request,'create_questions.html')
+def create_questions(request,quiz_id,no_of_ques):
+    data={'no_of_ques' : range(1,int(no_of_ques)+1) ,'quiz_id':quiz_id,'number':int(no_of_ques)}
+    if request.method=='POST':
+        
+        for j in range(no_of_ques):
+            problem=request.POST.get('problem-'+str(j+1))
+            print(problem)
+            if problem is not None and problem is not "":
+                question_no=j+1
+                option_1=request.POST.get('question-'+str(j+1)+'-option-1')
+                option_2=request.POST.get('question-'+str(j+1)+'-option-2')
+                option_3=request.POST.get('question-'+str(j+1)+'-option-3')
+                option_4=request.POST.get('question-'+str(j+1)+'-option-4')
+                option_5=request.POST.get('question-'+str(j+1)+'-option-5')
+                correct_ans=request.POST.get('question-'+str(j+1)+'-correct')
+                print('gjwvfjkbkjbijkjkbwfewev')
+            # print(problem,question_no,option_1,option_2,option_3,option_4,option_5,correct_ans)
+
+                question=Question(quiz_id=quiz_id,problem=problem,question_no=question_no,option_1=option_1,option_2=option_2,option_3=option_3,option_4=option_4,option_5=option_5,correct_answer=correct_ans)
+
+                question.save()
+
+        return redirect('home')
+
+
+
+    return render(request,'create_questions.html',data)

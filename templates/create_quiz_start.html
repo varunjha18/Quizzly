@@ -4,9 +4,9 @@
     <span class="text-center" style="color: white;"><h1>Create a new quiz</h1></span>
 
 
+    <h3>Quiz Id: {{new_quiz_id}}</h3>
     <form action="{% url 'create_quiz' %}" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-        <h3>Add Quiz Id</h3>
         <input type="hidden" name="quiz_id" value="{{new_quiz_id}}">
 
         <h3>Add Quiz title</h3>
