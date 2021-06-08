@@ -49,17 +49,17 @@
 
 {% endblock custom_css %} {% block content %}
 
-<main class="form-signin">
-    <form action='{% url 'login' %}'   method="POST" >
-    {% csrf_token %}
+<main class="form-signin text-center">
+    <form action="{% url 'login' %}" method="POST">
+        {% csrf_token %}
         <img class="mb-4" src="/docs/5.0/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
         <h1 class="h3 mb-3 fw-normal">Log in</h1>
 
-        <div class="form-floating">
+        <div class="center_input form-floating">
             <input name="email" type="text" class="form-control" id="floatingInput" placeholder="name@example.com">
             <label for="floatingInput" style='color:black;'>Email address</label>
         </div>
-        <div class="form-floating">
+        <div class="center_input form-floating my-2">
             <input name="password" type="password" class="form-control" id="floatingPassword" placeholder="Password">
             <label for="floatingPassword" style='color:black;'>Password</label>
         </div>

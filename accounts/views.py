@@ -15,8 +15,8 @@ def login(request):
 
         if user is not None:
             auth.login(request,user)
-            print('you are logged in')
-            # messages.success(request,'you are logged in')
+            # print('you are logged in')
+            messages.success(request,'you are logged in')
             return redirect('home')
 
         else:
@@ -67,3 +67,12 @@ def register(request):
 
     else:
         return render(request,'register.html')
+
+
+
+def logout(request):
+    # if request.method=="POST":
+    auth.logout(request)
+    messages.success(request,'you are logged out')
+        # return redirect('home')
+    return redirect('home')
