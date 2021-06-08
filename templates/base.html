@@ -10,8 +10,9 @@
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-
+    {% block custom_css %}{% endblock custom_css %}
     <title>Quizzly</title>
+
 </head>
 
 
@@ -97,7 +98,8 @@
   </button>
     </div>
 
-    {% comment %} carousal fading one end {% endcomment %} {% block content %} {% endblock content %}
+    {% comment %} carousal fading one end {% endcomment %}
+     {% block content %} {% endblock content %}
 
 
     <!-- Optional JavaScript; choose one of the two! -->
