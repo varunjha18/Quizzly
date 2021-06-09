@@ -1,0 +1,102 @@
+{% extends 'base.html' %} {% block custom_css %}
+
+<style>
+    .dashboard {
+        display: flex;
+    }
+    
+    .photo_case {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    #photo_box {
+        display: flex;
+        border: 2px solid white;
+        width: 250px;
+        height: 300px;
+        background-image: url(../static/img/avengers-1.jpg);
+        background-size: cover;
+        background-position: center;
+    }
+    
+    #desc_box {
+        display: flex;
+        border: 2px solid white;
+        width: 63vw;
+        min-height: 40vw;
+        /* background: white; */
+        margin-left: 30px;
+        /* background-image: url(../static/img/avengers-1.jpg); */
+        /* background-size: cover;
+        background-position: center; */
+    }
+    /* .profile_img {
+        
+    } */
+    
+    .update_profile {
+        border: 2px solid white;
+        padding: 5px 10px;
+        margin: auto;
+    }
+    
+    @media only screen and (max-width: 668px) {
+        .dashboard {
+            display: flex;
+            flex-direction: column;
+        }
+        #desc_box {
+            height: 800px;
+            margin-top: 30px;
+            width: 80vw;
+            margin: auto;
+            margin-top: 30px;
+        }
+        #photo_box {
+            margin: auto;
+        }
+    }
+</style>
+
+
+{% endblock custom_css %} {% block content %}
+
+
+<div class="dashboard container my-3 mx-6">
+
+    <div class="photo_case">
+
+        <div id="photo_box">
+
+
+        </div>
+        <br>
+        <form action="">
+
+            <button class="update_profile my-3">Update Profile</button>
+        </form>
+
+    </div>
+
+    <div id="desc_box" class="">
+
+
+    </div>
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+{% endblock content %}

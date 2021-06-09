@@ -39,15 +39,15 @@
                         <a class="nav-link active" aria-current="page" href="{% url 'create_quiz' %}">Add a Quiz</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">define</a>
+                        <a class="nav-link active" aria-current="page" href="#">LeaderBoard</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">define</a>
+                        <a class="nav-link active" aria-current="page" href="#">Forums</a>
                     </li>
-                    <li class="nav-item">
+                    {% comment %} <li class="nav-item">
                         <a class="nav-link" href="#">Link</a>
-                    </li>
-                    <li class="nav-item dropdown">
+                    </li> {% endcomment %}
+                    {% comment %} <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Dropdown
           </a>
@@ -59,7 +59,7 @@
                             </li>
                             <li><a class="dropdown-item" href="#">Something else here</a></li>
                         </ul>
-                    </li>
+                    </li> {% endcomment %}
                     <li class="nav-item">
                         {% if user.is_authenticated %}
                         <a class="nav-link" href="{% url 'logout' %}" aria-disabled="true">Logout</a> {% else %}
@@ -71,8 +71,9 @@
                     </li>
                     {% endif %}
                 </ul>
-                <form class="d-flex">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <form class="d-flex" action="{% url 'home' %}" method="POST">
+                {% csrf_token %}
+                    <input class="form-control me-2" type="search" name='search' placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-success" type="submit">Search</button>
                 </form>
             </div>

@@ -1,38 +1,54 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} {% block custom_css %}
 
-{% block content %}
+<style>
+    body {
+        color: white;
+    }
+    
+    .table {
+        color: white !important;
+    }
+    
+    .table:hover {
+        color: white !important;
+    }
+</style>
+
+
+{% endblock custom_css %} {% block content %}
 
 
 <div class="container mt-50 mb-50">
-   
-	<div class="main-title" style="text-align:left !important;">
-            <h1>Welcome <span>User</span></h1>
-            <p>This is the leaderboard</p>
-        </div>
-	<table class="table table-hover">
-	  <thead>
-		<tr>
-		  <th scope="col">#</th>
-		  <th scope="col">Name</th>
-		  <th scope="col">Score</th>
-		  <!-- <th scope="col">Price</th> -->
-		  <!-- <th scope="col">Action</th> -->
-		</tr>
-	  </thead>
-	  <tbody>
-		{% for score,rank in scores %}
-        <tr>
-        
-		  <th scope="row">{{rank}}</th>
-		  <td>{{score.user_name}}</td>
-		  <td>{{score.score}}</td>
-		  {% comment %} <td>$25000</td> {% endcomment %}
-		  {% comment %} <td><a href="/cars/{{enquiry.car_id}}" class="btn btn-outline-dark">View Car</a></td> {% endcomment %}
-		</tr>
-        {% endfor %}
-		
-	  </tbody>
-	</table>
+
+    <div class="main-title" style="text-align:left !important;">
+        <h1>Welcome <span>User</span></h1>
+        <p>This is the leaderboard</p>
+    </div>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Score</th>
+                <!-- <th scope="col">Price</th> -->
+                <!-- <th scope="col">Action</th> -->
+            </tr>
+        </thead>
+        <tbody>
+            {% for score,rank in scores %}
+            <tr style="color: white;">
+
+                <th scope="row">{{rank}}</th>
+                <td>{{score.user_name}}</td>
+                <td>{{score.score}}</td>
+                {% comment %}
+                <td>$25000</td> {% endcomment %} {% comment %}
+                <td><a href="/cars/{{enquiry.car_id}}" class="btn btn-outline-dark">View Car</a></td> {% endcomment %}
+            </tr>
+            {% endfor %}
+
+        </tbody>
+    </table>
 </div>
 
 

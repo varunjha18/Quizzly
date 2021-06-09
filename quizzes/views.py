@@ -9,6 +9,11 @@ from leaderboard.models import Score
 # Create your views here.
 def home(request):
     all_quizzes=Quiz.objects.all()
+    if request.method=='POST':
+        query=request.POST.get('search')
+        all_quizzes=all_quizzes.filter(quiz_title__icontains=query)
+
+
     data={'all_quizzes':all_quizzes}
     return render(request,'home.html',data)
 

@@ -4,4 +4,4 @@ setTimeout(function() {
     console.log('this function is working')
 
     $('#message').fadeOut('slow');
-}, 1115000)
+}, 5000)
