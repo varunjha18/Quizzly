@@ -3,7 +3,8 @@ from quizzes.models import Quiz
 from quizzes.models import Question
 from django.shortcuts import get_object_or_404, render
 from .forms import quizform
-
+from django.contrib.auth.models import User
+from leaderboard.models import Score
 
 # Create your views here.
 def home(request):
@@ -46,6 +47,16 @@ def question(request,quiz_id):
             'result':result,
             "score":score,
         }
+        user_id=request.user.id
+        # print(user_id)
+        # print('jvhjhhhvjfuyfvjadvaaav')
+
+        if user_id is not None:
+            user_name=str(request.user.first_name)+' '+str(request.user.last_name)
+            score=Score(user_id=user_id,quiz_id=quiz_id,score=score,user_name=user_name)
+            score.save()
+
+
         return render(request,"results.html",res_data)
         
 

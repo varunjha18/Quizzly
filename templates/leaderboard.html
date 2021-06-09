@@ -13,23 +13,23 @@
 	  <thead>
 		<tr>
 		  <th scope="col">#</th>
-		  <th scope="col">Car Name</th>
-		  <th scope="col">Location</th>
-		  <th scope="col">Price</th>
-		  <th scope="col">Action</th>
+		  <th scope="col">Name</th>
+		  <th scope="col">Score</th>
+		  <!-- <th scope="col">Price</th> -->
+		  <!-- <th scope="col">Action</th> -->
 		</tr>
 	  </thead>
 	  <tbody>
-		{% comment %} {% for enquiry in inquiries %} {% endcomment %}
+		{% for score,rank in scores %}
         <tr>
         
-		  <th scope="row">jvkhj{{enquiry.id}}</th>
-		  <td>evr er {{enquiry.car_title}}</td>
-		  <td>erverer{{enquiry.city}}</td>
-		  <td>$25000</td>
-		  <td><a href="/cars/{{enquiry.car_id}}" class="btn btn-outline-dark">View Car</a></td>
+		  <th scope="row">{{rank}}</th>
+		  <td>{{score.user_name}}</td>
+		  <td>{{score.score}}</td>
+		  {% comment %} <td>$25000</td> {% endcomment %}
+		  {% comment %} <td><a href="/cars/{{enquiry.car_id}}" class="btn btn-outline-dark">View Car</a></td> {% endcomment %}
 		</tr>
-        {% comment %} {% endfor %} {% endcomment %}
+        {% endfor %}
 		
 	  </tbody>
 	</table>
