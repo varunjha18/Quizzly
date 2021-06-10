@@ -50,7 +50,7 @@
 {% endblock custom_css %} {% block content %}
 
 <main class="form-signin">
-    <form action='{% url 'register' %}' method="POST">
+    <form action="{% url 'register' %}" method="POST">
         {% csrf_token %}
         <img class="mb-4" src="/docs/5.0/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
         <h1 class="h3 mb-3 fw-normal">Register for quizzly</h1>
@@ -62,6 +62,14 @@
         <div class="form-floating my-1">
             <input name="last_name" type="text" class="form-control" id="floatingInput" placeholder="name@example.com">
             <label for="floatingInput" style='color:black;'>Last Name</label>
+        </div>
+        <div class="form-floating my-1">
+            <input name="college" type="text" class="form-control" id="floatingInput" placeholder="name@example.com">
+            <label for="floatingInput" style='color:black;'>Name of College</label>
+        </div>
+        <div class="form-floating my-1">
+            <input name="year_study" type="text" class="form-control" id="floatingInput" placeholder="name@example.com">
+            <label for="floatingInput" style='color:black;'>Year of Study</label>
         </div>
         <div class="form-floating my-1">
             <input name="email" type="text" class="form-control" id="floatingInput" placeholder="name@example.com">

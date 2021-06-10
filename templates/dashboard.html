@@ -15,16 +15,19 @@
         border: 2px solid white;
         width: 250px;
         height: 300px;
-        background-image: url(../static/img/avengers-1.jpg);
+        background-image: url({{user.profile_img.url}});
         background-size: cover;
         background-position: center;
     }
     
-    #desc_box {
+    .desc_box {
         display: flex;
+        flex-direction: column;
+        text-decoration: none;
+        list-style-type: none;
         border: 2px solid white;
         width: 63vw;
-        min-height: 40vw;
+        min-height: 28vw;
         /* background: white; */
         margin-left: 30px;
         /* background-image: url(../static/img/avengers-1.jpg); */
@@ -41,6 +44,13 @@
         margin: auto;
     }
     
+    .update_profile_form {
+        /* border: 2px solid white; */
+        /* padding: 5px 10px; */
+        margin: auto;
+        margin-top: 20px;
+    }
+    
     @media only screen and (max-width: 668px) {
         .dashboard {
             display: flex;
@@ -49,7 +59,7 @@
         #desc_box {
             height: 800px;
             margin-top: 30px;
-            width: 80vw;
+            width: 30vw;
             margin: auto;
             margin-top: 30px;
         }
@@ -62,6 +72,10 @@
 
 {% endblock custom_css %} {% block content %}
 
+<div class="container my-4">
+    <h1>Welcome to your Dashboard</h1>
+</div>
+
 
 <div class="dashboard container my-3 mx-6">
 
@@ -71,17 +85,85 @@
 
 
         </div>
-        <br>
-        <form action="">
+        <!-- <br> -->
+        <button class="update_profile my-1" id='update_profile_button'>Update Profile</button>
 
-            <button class="update_profile my-3">Update Profile</button>
-        </form>
 
     </div>
 
-    <div id="desc_box" class="">
+    <div class="desc_box" class="" id='view_details'>
+        <h2 class="mx-4 my-2">Details</h2><br>
+        <ul style="list-style: none;">
+            <li>
+                <h4>Name: {{user.user_name}}</h4>
+            </li>
+            <li>
+                <h4>Email Id: {{request.user.is_authenticated}}</h4>
+            </li>
+            <li>
+                <h4>College: {{user.college}} </h4>
+            </li>
+            <li>
+                <h4>Year Of Study: {{user.year_study}}</h4>
+            </li>
+
+        </ul>
+    </div>
 
 
+
+
+
+
+
+    <div class="desc_box" id='update_details'>
+        <h2 class="mx-4 my-2">Details</h2><br>
+        <form action="{% url 'dashboard' %}" method="POST" enctype="multipart/form-data" id="update_profile_form">
+            {% csrf_token %}
+            <ul style="list-style: none;">
+                <li>
+                    <h4>Name : &nbsp;&nbsp;</h4>
+                    <input type="text" name='user_name'>
+                </li>
+                <li>
+                    <h4>Email Id : &nbsp;&nbsp;</h4>
+                    <input type="text" name="email">
+                </li>
+                <li>
+                    <h4>College :&nbsp;&nbsp; </h4>
+                    <input type="text" name='college'>
+                </li>
+                <li>
+                    <h4>Year Of Study :&nbsp;&nbsp; </h4>
+                    <input type="text" name="year_study">
+                </li>
+                <li>
+                    <h4>Update your Profile picture </h4>
+                    <input type="file" name='profile_img'>
+                </li>
+
+            </ul>
+        </form>
+    </div>
+
+
+    <div class="desc_box" class="">
+        <h2 class="mx-4 my-2">Statistics</h2><br>
+        <ul style="list-style: none;">
+
+            <li>
+                <h4>No of quizzes given </h4>
+            </li>
+            <li>
+                <h4>sc</h4>
+            </li>
+            <li>
+                <h4>Average % marks scored</h4>
+            </li>
+            <li>
+                <h4></h4>
+            </li>
+        </ul>
     </div>
 
 
@@ -90,13 +172,4 @@
 
 </div>
 
-
-
-
-
-
-
-
-
-
-{% endblock content %}
+{% endblock content %} {% block custom_js %} update_profile_button=document.getElementById("update_profile_button"); {% endblock custom_js %}
