@@ -102,9 +102,14 @@ def dashboard(request):
         this_user.save()
 
     data={'user':this_user,}
-    print(User.is_authenticated)
+    # print(User.is_authenticated)
     return render(request,'dashboard.html',data)
 
 
 def test_site(request):
     return render(request,'test_site.html')
+
+
+
+def room(request,room_name):
+    return(request,'chat_room.html')

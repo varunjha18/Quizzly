@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-     'multiselectfield',
+    'multiselectfield',
+    'channels',
 ]
 
 MIDDLEWARE = [
@@ -144,3 +145,16 @@ MESSAGE_TAGS = {
     messages.ERROR: 'danger',
     
 }
+
+
+
+# CHANNEL_LAYERS = {
+#         "default": {
+#             "BACKEND": "channels_redis.core.RedisChannelLayer",
+#             "CONFIG": {
+#                 "hosts": [os.environ.get('REDIS_URL', 'redis://localhost:6379')],
+#             }
+#         }
+#     } 
+
+ASGI_APPLICATION='quizzly.asgi.application'
